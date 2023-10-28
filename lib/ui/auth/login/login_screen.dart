@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/register/register_screen.dart';
-import 'package:flutter_app_e_commerece_online/utils/my_colors.dart';
-import 'package:flutter_app_e_commerece_online/utils/text_field_item.dart';
+import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
+import 'package:flutter_app_e_commerece_online/ui/utils/text_field_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
