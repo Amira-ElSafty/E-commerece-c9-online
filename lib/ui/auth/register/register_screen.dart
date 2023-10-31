@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerece_online/data/repository/auth_repository/repository/auth_repository_impl.dart';
-import 'package:flutter_app_e_commerece_online/domain/use_cases/register_use_case.dart';
+import 'package:flutter_app_e_commerece_online/domain/di.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/register/cubit/register_screen_view_model.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/register/cubit/register_states.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/dialog_utils.dart';
@@ -30,9 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(context, state.errorMessage!,
           posActionName: 'Ok',title: 'Error');
-        }else if(state is RegisterSucuessState){
+        }else if(state is RegisterSuccessState){
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(context, state.response.user?.name??"",
+          DialogUtils.showMessage(context, state.response.userEntity?.name??"",
               posActionName: 'Ok',title: 'Succuess');
         }
         },

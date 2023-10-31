@@ -1,6 +1,7 @@
 class MyAssets {
   // Selected Icons
   static const String selectedHomeIcon = "assets/icons/home_icon_selected.png";
+  static const editIcon = "assets/icons/edit.png";
   static const String selectedCategoryIcon =
       "assets/icons/category_icon_selected.png";
   static const String selectedWishlistIcon =
@@ -28,9 +29,9 @@ class MyAssets {
   static const shoppingCart = "assets/icons/shopping_cart.png";
 
   // Announcements Images
-  static const announcement1 = "assets/images/announcements/banner-1.png";
-  static const announcement2 = "assets/images/announcements/banner-2.png";
-  static const announcement3 = "assets/images/announcements/banner-3.png";
+  static const announcement1 = "assets/images/banner-1.png";
+  static const announcement2 = "assets/images/banner-2.png";
+  static const announcement3 = "assets/images/banner-3.png";
 
   // Categories
   static const beautyCategory = "assets/images/categories/beauty.png";

@@ -18,19 +18,17 @@ class RegisterScreenViewModel extends Cubit<RegisterStates>{
   void register()async{
     if (formKey.currentState?.validate() == true) {
       // register
-      try{
         emit(RegisterLoadingState(loadingMessage: 'Loading...'));
-        var response = await registerUseCase.invoke(nameController.text, emailController.text,
+        var either = await registerUseCase.invoke(nameController.text, emailController.text,
             passwordController.text, confirmationPasswordController.text,
             phoneController.text);
-        if(response.statusMsg == 'fail'){
-          emit(RegisterErrorState(errorMessage: response.message));
-        }else{
-          emit(RegisterSucuessState(response: response));
-        }
-      }catch(e){
-        emit(RegisterErrorState(errorMessage: e.toString()));
-      }
+        either.fold((l) {
+          emit(RegisterErrorState(errorMessage: l.errorMessage));
+        },
+                (response) {
+          emit(RegisterSuccessState(response: response));
+                }
+        );
 
     }
 
