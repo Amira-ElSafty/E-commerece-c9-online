@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerece_online/ui/home/widgets/custom_search_with_shopping_cart.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/tabs/home_tab/widgets/custom_search_with_shopping_cart.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_assets.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

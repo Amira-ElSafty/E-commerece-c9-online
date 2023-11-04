@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/login/login_screen.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/register/register_screen.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/cart/cart_screen.dart';
 import 'package:flutter_app_e_commerece_online/ui/home/home_screen/home_screen_view.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/product_details/product_details_view.dart';
 import 'package:flutter_app_e_commerece_online/ui/splash/splash_screen.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/app_theme.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_bloc_observer.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
               LoginScreen.routeName: (context) => LoginScreen(),
               RegisterScreen.routeName: (context) => RegisterScreen(),
               HomeScreenView.routeName: (context) => HomeScreenView(),
+              ProductDetailsView.routeName: (context) => ProductDetailsView(),
+              CartScreen.routeName: (context) => CartScreen(),
             },
             theme: AppTheme.mainTheme,
           );

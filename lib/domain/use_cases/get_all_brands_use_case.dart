@@ -3,11 +3,11 @@ import 'package:flutter_app_e_commerece_online/domain/entities/CategoryOrBrandRe
 import 'package:flutter_app_e_commerece_online/domain/entities/failures.dart';
 import 'package:flutter_app_e_commerece_online/domain/repository/repository/home_repository_contract.dart';
 
-class GetAllCategoriesUseCase{
+class GetAllBrandsUseCase{
   HomeRepositoryContract repositoryContract ;
-  GetAllCategoriesUseCase({required this.repositoryContract});
+  GetAllBrandsUseCase({required this.repositoryContract});
 
-  Future<Either<Failures,CategoryOrBrandResponseEntity>> invoke(){
-    return repositoryContract.getAllCategories();
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> invoke(){
+    return repositoryContract.getAllBrands();
   }
 }
