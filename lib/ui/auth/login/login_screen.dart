@@ -3,8 +3,10 @@ import 'package:flutter_app_e_commerece_online/domain/di.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/login/cubit/login_screen_view_model.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/login/cubit/login_states.dart';
 import 'package:flutter_app_e_commerece_online/ui/auth/register/register_screen.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/home_screen/home_screen_view.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/dialog_utils.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
+import 'package:flutter_app_e_commerece_online/ui/utils/shared_preference_utils.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/text_field_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,8 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
               context, state.response.userEntity?.name ?? "",
-              posActionName: 'Ok', title: 'Succuess');
+              posActionName: 'Ok', title: 'Success');
+          SharedPreferenceUtils.saveData(key: 'Token',value: state.response.token);
         }
+        Navigator.of(context).pushReplacementNamed(HomeScreenView.routeName);
       },
       child: Scaffold(
         body: Container(

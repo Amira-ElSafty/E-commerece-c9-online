@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerece_online/domain/entities/CategoryResponseEntity.dart';
-import 'package:flutter_app_e_commerece_online/ui/home/category/category_item.dart';
+import 'package:flutter_app_e_commerece_online/domain/entities/CategoryOrBrandResponseEntity.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/tabs/home_tab/widgets/category_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-class CategoriesSection extends StatelessWidget {
-  List<DataEntity> categoryList;
-  CategoriesSection({required this.categoryList});
+class CategoriesOrBrandsSection extends StatelessWidget {
+  List<CategoryOrBrandEntity> list ;
+  CategoriesOrBrandsSection({required this.list});
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280.h,
+      height: 200.h,
       child: GridView.builder(
-          itemCount: 20,
+          itemCount: list.length ,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return CategoryItem(
-              dataEntity: categoryList[index],
-            );
+            return CategoryOrBrandItem(categoryOrBrandEntity: list[index],);
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

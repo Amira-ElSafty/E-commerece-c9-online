@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_e_commerece_online/domain/entities/GetCartResponseEntity.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/cart/cubit/cart_view_model.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItem extends StatelessWidget {
-  String title;
-  String imagepath;
-  int price;
-  String color;
-  int size;
-  int quantity;
+  GetProductCartEntity getProduct;
 
-  CartItem(
-      {required this.title,
-      required this.imagepath,
-      required this.color,
-      required this.size,
-      required this.price,
-      required this.quantity});
+  CartItem({required this.getProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +28,8 @@ class CartItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
             ),
-            child: Image.asset(imagepath, fit: BoxFit.fill),
+            child: Image.network(getProduct.product?.imageCover ?? "",
+                fit: BoxFit.fill),
           ),
           Expanded(
               child: Padding(
@@ -50,7 +42,7 @@ class CartItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(title,
+                        Text(getProduct.product?.title ?? "",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -60,6 +52,8 @@ class CartItem extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             //logic here
+                            CartViewModel.get(context).deleteItemInCart(
+                                getProduct.product?.id??"");
                           },
                           child: Icon(
                             Icons.delete_outline,
@@ -73,28 +67,7 @@ class CartItem extends StatelessWidget {
                     padding: EdgeInsets.only(top: 13.h, bottom: 13.h),
                     child: Row(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: Icon(
-                            Icons.circle,
-                            color: AppColors.redColor,
-                            size: 15.w,
-                          ),
-                        ),
-                        Text(color,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(color: AppColors.blueGreyColor)),
-                        Padding(
-                          padding: EdgeInsets.only(left: 1.w, right: 3.w),
-                          child: Container(
-                            width: 2.w,
-                            height: 15.h,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        Text('Size: $size',
+                        Text('Count: ${getProduct.count.toString()}',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -108,14 +81,13 @@ class CartItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('EGP $price',
+                          Text('EGP ${getProduct.price}',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(
                                       color: AppColors.primaryColor,
                                       fontWeight: FontWeight.bold)),
-
                           Container(
                             height: 50.h,
                             decoration: BoxDecoration(
@@ -128,7 +100,14 @@ class CartItem extends StatelessWidget {
                               children: [
                                 IconButton(
                                   padding: EdgeInsets.zero,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    var counter = getProduct.count ?? 0;
+                                    counter-- ;
+                                    CartViewModel.get(context).
+                                    updateCountInCart(
+                                        getProduct.product?.id??'',
+                                        counter);
+                                  },
                                   icon: Icon(
                                     Icons.remove_circle_outline_rounded,
                                     color: AppColors.whiteColor,
@@ -136,7 +115,7 @@ class CartItem extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '1',
+                                  getProduct.count.toString(),
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
@@ -144,7 +123,14 @@ class CartItem extends StatelessWidget {
                                 ),
                                 IconButton(
                                   padding: EdgeInsets.zero,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    var counter = getProduct.count??0;
+                                    counter++ ;
+                                    CartViewModel.get(context).
+                                    updateCountInCart(
+                                        getProduct.product?.id??'',
+                                        counter);
+                                  },
                                   icon: Icon(
                                     Icons.add_circle_outline_rounded,
                                     color: AppColors.whiteColor,
@@ -154,40 +140,6 @@ class CartItem extends StatelessWidget {
                               ],
                             ),
                           )
-
-                          // Container(
-                          //   height: 42.h,
-                          //   width: 122.w,
-                          //   decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(20.r),
-                          //       color: Theme.of(context).primaryColor),
-                          //   child: Row(
-                          //     mainAxisAlignment:
-                          //         MainAxisAlignment.spaceEvenly,
-                          //     children: [
-                          //       InkWell(
-                          //         onTap: () {
-                          //           //logic here
-                          //         },
-                          //         child: Icon(Icons.remove_circle_outline,
-                          //             size: 20.w,
-                          //             color: AppColors.whiteColor),
-                          //       ),
-                          //       Text("$quantity",
-                          //           style: Theme.of(context)
-                          //               .textTheme
-                          //               .titleMedium),
-                          //       InkWell(
-                          //         onTap: () {
-                          //           //logic here
-                          //         },
-                          //         child: Icon(Icons.add_circle_outline,
-                          //             size: 20.w,
-                          //             color: AppColors.whiteColor),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),

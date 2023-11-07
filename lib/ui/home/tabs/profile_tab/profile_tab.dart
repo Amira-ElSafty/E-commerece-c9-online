@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_e_commerece_online/ui/auth/login/login_screen.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/custome_text_field_item.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_assets.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
+import 'package:flutter_app_e_commerece_online/ui/utils/shared_preference_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -27,9 +29,19 @@ class ProfileTab extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Image.asset(
-                      MyAssets.logo,
-                      color: AppColors.primaryColor,
+                    Row(
+                      children: [
+                        Image.asset(
+                          MyAssets.logo,
+                          color: AppColors.primaryColor,
+                        ),
+                        IconButton(onPressed: (){
+                          SharedPreferenceUtils.removeData('Token');
+                          Navigator.pushReplacementNamed(context,
+                              LoginScreen.routeName);
+                        },
+                            icon: Icon(Icons.logout))
+                      ],
                     ),
                     SizedBox(
                       height: 18.h,

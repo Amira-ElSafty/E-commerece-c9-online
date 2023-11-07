@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerece_online/domain/entities/ProductResponseEntity.dart';
+import 'package:flutter_app_e_commerece_online/ui/home/tabs/product_list_tab/cubit/product_list_tab_view_model.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/app_theme.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_assets.dart';
 import 'package:flutter_app_e_commerece_online/ui/utils/my_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GridViewCardItem extends StatelessWidget {
@@ -11,6 +13,7 @@ class GridViewCardItem extends StatelessWidget {
   GridViewCardItem({required this.productEntity});
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: 191.w,
       height: 237.h,
@@ -120,7 +123,10 @@ class GridViewCardItem extends StatelessWidget {
                   flex: 1,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    ProductListTabViewModel.get(context)
+                        .addToCart(productEntity.id??"");
+                  },
                   splashColor: Colors.transparent,
                   child: Icon(
                     Icons.add_circle,

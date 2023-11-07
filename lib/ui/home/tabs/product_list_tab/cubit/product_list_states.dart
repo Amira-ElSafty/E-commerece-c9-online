@@ -1,3 +1,4 @@
+import 'package:flutter_app_e_commerece_online/domain/entities/AddToCartResponseEntity.dart';
 import 'package:flutter_app_e_commerece_online/domain/entities/ProductResponseEntity.dart';
 import 'package:flutter_app_e_commerece_online/domain/entities/failures.dart';
 
@@ -16,4 +17,22 @@ class ProductListTabErrorStates extends ProductListTabStates{
 class ProductListTabSuccessStates extends ProductListTabStates {
   ProductResponseEntity productResponseEntity ;
   ProductListTabSuccessStates({required this.productResponseEntity});
+}
+
+class AddToCartLoadingStates extends ProductListTabStates {
+  String? loadingMessage;
+
+  AddToCartLoadingStates({required this.loadingMessage});
+}
+
+class AddToCartTabErrorStates extends ProductListTabStates {
+  Failures errors;
+
+  AddToCartTabErrorStates({required this.errors});
+}
+
+class AddToCartSuccessStates extends ProductListTabStates {
+  AddToCartResponseEntity addToCartResponseEntity;
+
+  AddToCartSuccessStates({required this.addToCartResponseEntity});
 }
